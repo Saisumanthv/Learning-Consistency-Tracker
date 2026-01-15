@@ -261,7 +261,7 @@ export default function App() {
       {showBigCongrats && <Confetti />}
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="bg-gradient-to-br from-black/95 via-purple-950/50 to-black/95 backdrop-blur-sm rounded-none border-4 border-yellow-500 neon-border-gold shadow-2xl p-4 sm:p-6 md:p-8 mb-6 relative">
+        <div className="bg-gradient-to-br from-black/95 via-purple-950/50 to-black/95 backdrop-blur-sm rounded-none border-4 border-yellow-500 shadow-2xl p-4 sm:p-6 md:p-8 mb-6 relative">
           <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-fuchsia-500"></div>
           <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>
@@ -380,12 +380,12 @@ export default function App() {
               );
             })}
           </div>
-        </div>
 
-        <div className="mt-8 flex items-center justify-center">
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-fuchsia-400 to-yellow-400 tracking-widest uppercase" style={{ fontFamily: 'Orbitron, sans-serif' }}>
-            SAI SUMANTH VADLA
-          </p>
+          <div className="mt-8 flex items-center justify-center">
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-fuchsia-400 to-yellow-400 tracking-widest uppercase" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              SAI SUMANTH VADLA
+            </p>
+          </div>
         </div>
       </div>
     </div>
