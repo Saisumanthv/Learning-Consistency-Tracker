@@ -30,9 +30,9 @@ export default function App() {
   const currentDateRef = useRef<HTMLDivElement>(null);
 
   const topicNames = {
-    ai_knowledge: 'Deep Learning & Neural Networks',
-    codebasics: 'MLOps & Infrastructure',
-    trading: 'Research Papers & Experiments',
+    ai_knowledge: 'AI Knowledge',
+    codebasics: 'Codebasics',
+    trading: 'Trading',
   };
 
   const topicIcons = {
@@ -257,7 +257,7 @@ export default function App() {
             <div className="flex items-center justify-center gap-3 mb-3">
               <Brain className="w-10 h-10 text-emerald-400" />
               <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 tracking-tight">
-                AI Engineering Sprint
+                Daily Consistency Tracker
               </h1>
               <Brain className="w-10 h-10 text-emerald-400" />
             </div>
@@ -304,16 +304,16 @@ export default function App() {
             <div className="flex items-center bg-gradient-to-r from-emerald-900/50 to-teal-900/50 border border-emerald-500/50 px-6 py-3 rounded-full shadow-lg shadow-emerald-500/20">
               <Flame className="w-6 h-6 text-emerald-400 mr-2 drop-shadow-glow" />
               <span className="text-2xl font-bold text-emerald-300 font-mono">{streak}</span>
-              <span className="ml-2 text-emerald-200/80 text-base font-normal">day sprint streak</span>
+              <span className="ml-2 text-emerald-200/80 text-base font-normal">day streak</span>
             </div>
           </div>
 
           {showBigCongrats && (
             <div className="bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20 border-2 border-emerald-400 text-emerald-100 p-6 rounded-xl mb-6 text-center animate-pulse shadow-2xl shadow-emerald-500/20">
               <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-300">
-                Sprint Complete!
+                Congratulations!
               </h2>
-              <p className="text-xl mt-2 text-emerald-200/90 font-mono">All modules completed for today</p>
+              <p className="text-xl mt-2 text-emerald-200/90">You've made your time useful today!</p>
             </div>
           )}
 
@@ -342,7 +342,7 @@ export default function App() {
                   </button>
                   {completionMessages[topic] && (
                     <div className="mt-2 ml-4 text-emerald-300 font-normal text-base animate-pulse">
-                      Module completed: {topicNames[topic]}
+                      Congrats on completing {topicNames[topic]} today!
                     </div>
                   )}
                 </div>
