@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Check, Flame } from 'lucide-react';
 import Confetti from './components/Confetti';
 
@@ -26,6 +26,7 @@ export default function App() {
   const [showBigCongrats, setShowBigCongrats] = useState(false);
   const [monthlyCompletions, setMonthlyCompletions] = useState<Record<string, DailyCompletion>>({});
   const [streak, setStreak] = useState(0);
+  const currentDateRef = useRef<HTMLDivElement>(null);
 
   const topicNames = {
     ai_knowledge: 'AI Knowledge',
@@ -71,6 +72,16 @@ export default function App() {
       setTimeout(() => setShowBigCongrats(false), 5000);
     }
   }, [topics]);
+
+  useEffect(() => {
+    if (currentDateRef.current) {
+      currentDateRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+  }, [monthlyCompletions]);
 
   const loadTodayData = () => {
     const today = new Date().toISOString().split('T')[0];
@@ -240,16 +251,20 @@ export default function App() {
             </h3>
             <div className="overflow-x-auto scrollbar-hide">
               <div className="flex gap-3 min-w-max px-2 justify-center">
-                {Array.from({ length: getDaysInMonth() }, (_, i) => i + 1).map((day) => (
-                  <div
-                    key={day}
-                    className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
-                      day
-                    )} flex-shrink-0 transition-all hover:scale-110 shadow-lg`}
-                  >
-                    {day}
-                  </div>
-                ))}
+                {Array.from({ length: getDaysInMonth() }, (_, i) => i + 1).map((day) => {
+                  const isToday = day === new Date().getDate();
+                  return (
+                    <div
+                      key={day}
+                      ref={isToday ? currentDateRef : null}
+                      className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
+                        day
+                      )} flex-shrink-0 transition-all hover:scale-110 shadow-lg`}
+                    >
+                      {day}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
