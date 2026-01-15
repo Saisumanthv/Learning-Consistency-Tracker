@@ -262,7 +262,7 @@ export default function App() {
           <div className="text-center mb-6 sm:mb-8">
             <div className="mb-2 sm:mb-3">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-yellow-400 to-fuchsia-500 tracking-wide sm:tracking-wider neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
-                DAILY CONSISTENCY TRACKER
+                LEARNING CONSISTENCY TRACKER
               </h1>
             </div>
             <p className="text-xs sm:text-sm md:text-base text-yellow-400 tracking-widest uppercase">
