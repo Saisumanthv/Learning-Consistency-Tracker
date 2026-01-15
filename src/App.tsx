@@ -276,8 +276,10 @@ export default function App() {
                       onClick={() => handleDateClick(day)}
                       className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
                         day
-                      )} flex-shrink-0 transition-all hover:scale-105 shadow-lg cursor-pointer ${
-                        isSelected ? 'ring-2 ring-cyan-400 ring-offset-2 ring-offset-slate-900' : ''
+                      )} flex-shrink-0 transition-all hover:scale-105 cursor-pointer ${
+                        isSelected
+                          ? 'shadow-[0_0_0_2px_rgb(34_211_238_/_1)] shadow-cyan-400'
+                          : 'shadow-lg'
                       }`}
                     >
                       {day}
