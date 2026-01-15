@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Check, Flame, Brain, GitBranch, FileCode, Code2 } from 'lucide-react';
+import { Check, Flame, Brain, GitBranch, TrendingUp, Code2 } from 'lucide-react';
 import Confetti from './components/Confetti';
 
 interface TopicState {
@@ -42,7 +42,7 @@ export default function App() {
   const topicIcons = {
     ai_knowledge: Brain,
     codebasics: GitBranch,
-    trading: FileCode,
+    trading: TrendingUp,
     dsa: Code2,
   };
 
