@@ -273,8 +273,8 @@ export default function App() {
                 LEARNING CONSISTENCY TRACKER
               </h1>
             </div>
-            <div className="inline-block bg-fuchsia-500/20 border-2 border-fuchsia-500 px-4 py-2 rounded-lg">
-              <p className="text-sm sm:text-base md:text-lg text-fuchsia-400 tracking-widest uppercase">
+            <div className="inline-block bg-fuchsia-500/20 border-4 border-fuchsia-500 px-8 py-4 rounded-lg">
+              <p className="text-base sm:text-lg md:text-xl text-fuchsia-400 tracking-widest uppercase font-bold">
                 {formatDate(new Date(selectedDate + 'T00:00:00'))}
               </p>
             </div>
