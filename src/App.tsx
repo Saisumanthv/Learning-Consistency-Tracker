@@ -298,12 +298,12 @@ export default function App() {
                       key={day}
                       ref={isToday ? currentDateRef : null}
                       onClick={() => handleDateClick(day)}
-                      className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-none font-bold text-sm sm:text-base ${getDateColor(
-                        day
-                      )} flex-shrink-0 transition-all hover:scale-110 cursor-pointer uppercase ${
+                      className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-none font-bold text-sm sm:text-base ${
                         isSelected
-                          ? 'shadow-[0_0_0_3px_rgb(234_179_8)] shadow-yellow-500 neon-border-gold'
-                          : 'shadow-lg'
+                          ? 'bg-fuchsia-500 text-white border-2 border-fuchsia-300 shadow-[0_0_0_3px_rgb(234_179_8)] shadow-yellow-500 neon-border-gold'
+                          : getDateColor(day)
+                      } flex-shrink-0 transition-all hover:scale-110 cursor-pointer uppercase ${
+                        isSelected ? '' : 'shadow-lg'
                       }`}
                       style={{ fontFamily: 'Orbitron, sans-serif' }}
                     >
