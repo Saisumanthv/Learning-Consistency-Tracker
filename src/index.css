@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+}
 
 @keyframes confetti-fall {
   0% {
@@ -27,5 +33,57 @@
 }
 
 .drop-shadow-glow {
-  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+  filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.8)) drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+}
+
+.neon-text-pink {
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.8),
+               0 0 20px rgba(255, 0, 255, 0.6),
+               0 0 30px rgba(255, 0, 255, 0.4);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
+               0 0 20px rgba(0, 255, 255, 0.6),
+               0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+.neon-border-pink {
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5),
+              inset 0 0 15px rgba(255, 0, 255, 0.2);
+}
+
+.neon-border-cyan {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+              inset 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-2px, 2px);
+  }
+  66% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
 }

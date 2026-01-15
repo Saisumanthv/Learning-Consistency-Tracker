@@ -12,7 +12,7 @@ export default function Confetti() {
   const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
 
   useEffect(() => {
-    const colors = ['#fbbf24', '#f59e0b', '#d97706', '#fcd34d', '#fde047', '#a855f7', '#c084fc', '#e9d5ff'];
+    const colors = ['#00ffff', '#06b6d4', '#22d3ee', '#ff00ff', '#d946ef', '#ec4899', '#ffff00', '#fde047'];
     const pieces: ConfettiPiece[] = [];
 
     for (let i = 0; i < 60; i++) {

@@ -27,23 +27,29 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-purple-950 flex items-center justify-center px-4">
-      <div className="bg-gradient-to-br from-purple-900/50 via-purple-800/40 to-purple-900/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-amber-400/20 p-8 w-full max-w-md">
+    <div className="min-h-screen bg-black cyber-grid flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-black to-blue-950/40"></div>
+      <div className="bg-gradient-to-br from-black/95 via-purple-950/50 to-black/95 backdrop-blur-sm rounded-none shadow-2xl border-4 border-cyan-500 neon-border-cyan p-10 w-full max-w-md relative z-10">
+        <div className="absolute top-0 left-0 w-5 h-5 border-t-4 border-l-4 border-fuchsia-500"></div>
+        <div className="absolute top-0 right-0 w-5 h-5 border-t-4 border-r-4 border-cyan-500"></div>
+        <div className="absolute bottom-0 left-0 w-5 h-5 border-b-4 border-l-4 border-cyan-500"></div>
+        <div className="absolute bottom-0 right-0 w-5 h-5 border-b-4 border-r-4 border-fuchsia-500"></div>
+
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <LogIn className="w-16 h-16 text-amber-400" />
+          <div className="flex justify-center mb-6">
+            <LogIn className="w-20 h-20 text-cyan-400 drop-shadow-glow" />
           </div>
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 mb-2">
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-cyan-400 to-fuchsia-500 mb-3 tracking-wider neon-text-cyan uppercase" style={{ fontFamily: 'Orbitron, sans-serif' }}>
             Daily Consistency Tracker
           </h1>
-          <p className="text-amber-200/80">
+          <p className="text-cyan-300 text-lg uppercase tracking-widest">
             {isSignUp ? 'Create your account' : 'Welcome back'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-amber-200/90 mb-2 text-sm font-medium">
+            <label htmlFor="email" className="block text-cyan-300 mb-2 text-sm font-bold uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
               Email
             </label>
             <input
@@ -52,13 +58,13 @@ export default function Auth() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 bg-purple-900/50 border border-purple-700/50 rounded-lg text-amber-100 placeholder-purple-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+              className="w-full px-4 py-4 bg-black/70 border-2 border-gray-700 rounded-none text-cyan-300 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:neon-border-cyan transition-all"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-amber-200/90 mb-2 text-sm font-medium">
+            <label htmlFor="password" className="block text-cyan-300 mb-2 text-sm font-bold uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
               Password
             </label>
             <input
@@ -68,13 +74,13 @@ export default function Auth() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full px-4 py-3 bg-purple-900/50 border border-purple-700/50 rounded-lg text-amber-100 placeholder-purple-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+              className="w-full px-4 py-4 bg-black/70 border-2 border-gray-700 rounded-none text-cyan-300 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:neon-border-cyan transition-all"
               placeholder="••••••••"
             />
           </div>
 
           {error && (
-            <div className="bg-red-500/20 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-500/20 border-2 border-red-500 text-red-300 px-4 py-3 rounded-none text-sm uppercase tracking-wide">
               {error}
             </div>
           )}
@@ -82,19 +88,24 @@ export default function Auth() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-fuchsia-600 to-cyan-600 hover:from-fuchsia-500 hover:to-cyan-500 text-white font-bold py-4 rounded-none transition-all duration-300 shadow-lg neon-border-pink border-2 border-fuchsia-500 uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed relative"
+            style={{ fontFamily: 'Orbitron, sans-serif' }}
           >
+            <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400"></div>
+            <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-fuchsia-400"></div>
+            <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-fuchsia-400"></div>
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-400"></div>
             {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
+        <div className="mt-8 text-center">
           <button
             onClick={() => {
               setIsSignUp(!isSignUp);
               setError('');
             }}
-            className="text-amber-300 hover:text-amber-200 text-sm transition-colors"
+            className="text-fuchsia-400 hover:text-cyan-400 text-sm transition-colors uppercase tracking-wide"
           >
             {isSignUp ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
           </button>
