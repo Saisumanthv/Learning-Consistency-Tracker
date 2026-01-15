@@ -276,11 +276,14 @@ export default function App() {
                       onClick={() => handleDateClick(day)}
                       className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
                         day
-                      )} flex-shrink-0 transition-all hover:scale-110 shadow-lg cursor-pointer ${
-                        isSelected ? 'ring-4 ring-cyan-400 ring-offset-2 ring-offset-slate-900' : ''
+                      )} flex-shrink-0 transition-all hover:scale-105 shadow-lg cursor-pointer relative ${
+                        isSelected ? 'scale-110 shadow-2xl shadow-cyan-500/50' : ''
                       }`}
                     >
-                      {day}
+                      {isSelected && (
+                        <div className="absolute inset-0 rounded-lg border-4 border-cyan-400 animate-pulse" />
+                      )}
+                      <span className="relative z-10">{day}</span>
                     </div>
                   );
                 })}
