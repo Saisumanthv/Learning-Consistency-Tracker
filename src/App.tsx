@@ -225,7 +225,7 @@ export default function App() {
     }
 
     if (completion.ai_knowledge && completion.codebasics && completion.trading) {
-      return 'bg-gradient-to-br from-fuchsia-600 to-cyan-600 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-500/50 neon-border-cyan';
+      return 'bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500 text-black border-2 border-yellow-300 neon-border-gold font-black';
     }
 
     return 'bg-gradient-to-br from-gray-900 to-black text-gray-500 border-2 border-gray-700/70';
@@ -249,23 +249,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black cyber-grid py-8 px-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-black to-blue-950/40"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-black to-yellow-950/40"></div>
       {showBigCongrats && <Confetti />}
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="bg-gradient-to-br from-black/95 via-purple-950/50 to-black/95 backdrop-blur-sm rounded-none border-4 border-cyan-500 neon-border-cyan shadow-2xl p-8 mb-6 relative">
+        <div className="bg-gradient-to-br from-black/95 via-purple-950/50 to-black/95 backdrop-blur-sm rounded-none border-4 border-yellow-500 neon-border-gold shadow-2xl p-8 mb-6 relative">
           <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-fuchsia-500"></div>
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-cyan-500"></div>
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-cyan-500"></div>
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-fuchsia-500"></div>
 
           <div className="text-center mb-8">
             <div className="mb-3">
-              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-cyan-400 to-fuchsia-500 tracking-wider neon-text-cyan" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-yellow-400 to-fuchsia-500 tracking-wider neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
                 DAILY CONSISTENCY TRACKER
               </h1>
             </div>
-            <p className="text-base text-cyan-400 tracking-widest uppercase">
+            <p className="text-base text-yellow-400 tracking-widest uppercase">
               {formatDate(new Date(selectedDate + 'T00:00:00'))}
             </p>
           </div>
@@ -292,7 +292,7 @@ export default function App() {
                         day
                       )} flex-shrink-0 transition-all hover:scale-110 cursor-pointer uppercase ${
                         isSelected
-                          ? 'shadow-[0_0_0_3px_rgb(6_182_212)] shadow-cyan-500 neon-border-cyan'
+                          ? 'shadow-[0_0_0_3px_rgb(234_179_8)] shadow-yellow-500 neon-border-gold'
                           : 'shadow-lg'
                       }`}
                       style={{ fontFamily: 'Orbitron, sans-serif' }}
@@ -306,27 +306,27 @@ export default function App() {
           </div>
 
           <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center bg-gradient-to-r from-fuchsia-950/80 to-cyan-950/80 border-2 border-fuchsia-500 px-8 py-4 rounded-none shadow-lg neon-border-pink relative">
-              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400"></div>
+            <div className="flex items-center bg-gradient-to-r from-fuchsia-950/80 to-yellow-950/80 border-2 border-fuchsia-500 px-8 py-4 rounded-none shadow-lg neon-border-pink relative">
+              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-400"></div>
               <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-fuchsia-500"></div>
               <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-fuchsia-500"></div>
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-400"></div>
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-400"></div>
               <Flame className="w-7 h-7 text-fuchsia-400 mr-3 drop-shadow-glow" />
-              <span className="text-3xl font-bold text-cyan-400 neon-text-cyan" style={{ fontFamily: 'Orbitron, sans-serif' }}>{streak}</span>
+              <span className="text-3xl font-bold text-yellow-400 neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>{streak}</span>
               <span className="ml-3 text-fuchsia-300 text-base font-normal uppercase tracking-wider">DAY STREAK</span>
             </div>
           </div>
 
           {showBigCongrats && (
-            <div className="bg-gradient-to-r from-fuchsia-500/30 via-cyan-500/30 to-fuchsia-500/30 border-4 border-cyan-400 text-white p-8 rounded-none mb-6 text-center animate-pulse shadow-2xl neon-border-cyan relative">
+            <div className="bg-gradient-to-r from-fuchsia-500/30 via-yellow-500/30 to-fuchsia-500/30 border-4 border-yellow-400 text-white p-8 rounded-none mb-6 text-center animate-pulse shadow-2xl neon-border-gold relative">
               <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-fuchsia-500"></div>
-              <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-cyan-500"></div>
-              <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-cyan-500"></div>
+              <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-yellow-500"></div>
+              <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-yellow-500"></div>
               <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-fuchsia-500"></div>
-              <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 via-cyan-300 to-fuchsia-300 neon-text-cyan uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 via-yellow-300 to-fuchsia-300 neon-text-gold uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
                 Congratulations!
               </h2>
-              <p className="text-xl mt-3 text-cyan-300 uppercase tracking-wide">You've made your time useful today!</p>
+              <p className="text-xl mt-3 text-yellow-300 uppercase tracking-wide">You've made your time useful today!</p>
             </div>
           )}
 
@@ -339,21 +339,21 @@ export default function App() {
                     onClick={() => handleTopicCheck(topic)}
                     className={`w-full flex items-center justify-between p-6 rounded-none cursor-pointer transition-all duration-300 relative ${
                       topics[topic]
-                        ? 'bg-gradient-to-r from-fuchsia-600/90 to-cyan-600/90 border-2 border-cyan-400 hover:from-fuchsia-600 hover:to-cyan-600 shadow-lg neon-border-cyan'
-                        : 'bg-black/70 border-2 border-gray-700 hover:bg-black/90 hover:border-cyan-500/60'
+                        ? 'bg-gradient-to-r from-fuchsia-600/90 to-yellow-600/90 border-2 border-yellow-400 hover:from-fuchsia-600 hover:to-yellow-600 shadow-lg neon-border-gold'
+                        : 'bg-black/70 border-2 border-gray-700 hover:bg-black/90 hover:border-yellow-500/60'
                     }`}
                   >
                     {topics[topic] && (
                       <>
                         <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-fuchsia-400"></div>
-                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-cyan-400"></div>
-                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-cyan-400"></div>
+                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-yellow-400"></div>
+                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-yellow-400"></div>
                         <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-fuchsia-400"></div>
                       </>
                     )}
                     <div className="flex items-center gap-4">
-                      <Icon className={`w-7 h-7 ${topics[topic] ? 'text-white drop-shadow-glow' : 'text-cyan-400'}`} />
-                      <span className={`text-lg font-bold tracking-wider uppercase ${topics[topic] ? 'text-white' : 'text-cyan-300'}`} style={{ fontFamily: 'Orbitron, sans-serif' }}>
+                      <Icon className={`w-7 h-7 ${topics[topic] ? 'text-white drop-shadow-glow' : 'text-yellow-400'}`} />
+                      <span className={`text-lg font-bold tracking-wider uppercase ${topics[topic] ? 'text-white' : 'text-yellow-300'}`} style={{ fontFamily: 'Orbitron, sans-serif' }}>
                         {topicNames[topic]}
                       </span>
                     </div>
@@ -362,7 +362,7 @@ export default function App() {
                     )}
                   </button>
                   {completionMessages[topic] && (
-                    <div className="mt-3 ml-4 text-cyan-400 font-normal text-base animate-pulse uppercase tracking-wide">
+                    <div className="mt-3 ml-4 text-yellow-400 font-normal text-base animate-pulse uppercase tracking-wide">
                       Congrats on completing {topicNames[topic]} today!
                     </div>
                   )}
