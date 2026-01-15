@@ -374,7 +374,7 @@ export default function App() {
 
         <div className="mt-8 flex items-center justify-center">
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-fuchsia-400 to-yellow-400 tracking-widest uppercase neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
-            SAI SUMANTH
+            SAI SUMANTH VADLA
           </p>
         </div>
       </div>
