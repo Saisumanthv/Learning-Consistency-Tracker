@@ -254,12 +254,10 @@ export default function App() {
       <div className="max-w-4xl mx-auto">
         <div className="bg-gradient-to-br from-gray-900/90 via-emerald-950/30 to-gray-900/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-emerald-500/30 p-8 mb-6">
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Brain className="w-10 h-10 text-emerald-400" />
+            <div className="mb-3">
               <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 tracking-tight">
                 Daily Consistency Tracker
               </h1>
-              <Brain className="w-10 h-10 text-emerald-400" />
             </div>
             <p className="text-base text-emerald-300/80 font-mono tracking-wider">
               {formatDate(new Date(selectedDate + 'T00:00:00'))}
