@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
-import { Check, Flame, Brain, GitBranch, FileCode } from 'lucide-react';
+import { Check, Flame, Brain, GitBranch, FileCode, Code2 } from 'lucide-react';
 import Confetti from './components/Confetti';
 
 interface TopicState {
   ai_knowledge: boolean;
   codebasics: boolean;
   trading: boolean;
+  dsa: boolean;
 }
 
 interface DailyCompletion {
@@ -13,6 +14,7 @@ interface DailyCompletion {
   ai_knowledge: boolean;
   codebasics: boolean;
   trading: boolean;
+  dsa: boolean;
 }
 
 export default function App() {
@@ -22,6 +24,7 @@ export default function App() {
     ai_knowledge: false,
     codebasics: false,
     trading: false,
+    dsa: false,
   });
   const [completionMessages, setCompletionMessages] = useState<Record<string, boolean>>({});
   const [showBigCongrats, setShowBigCongrats] = useState(false);
@@ -33,12 +36,14 @@ export default function App() {
     ai_knowledge: 'AI Knowledge',
     codebasics: 'Codebasics',
     trading: 'Trading',
+    dsa: 'DSA',
   };
 
   const topicIcons = {
     ai_knowledge: Brain,
     codebasics: GitBranch,
     trading: FileCode,
+    dsa: Code2,
   };
 
   const STORAGE_KEY = 'daily-completions';
@@ -79,7 +84,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (topics.ai_knowledge && topics.codebasics && topics.trading && !showBigCongrats) {
+    if (topics.ai_knowledge && topics.codebasics && topics.trading && topics.dsa && !showBigCongrats) {
       setShowBigCongrats(true);
       setTimeout(() => setShowBigCongrats(false), 5000);
     }
@@ -104,12 +109,14 @@ export default function App() {
         ai_knowledge: dateData.ai_knowledge,
         codebasics: dateData.codebasics,
         trading: dateData.trading,
+        dsa: dateData.dsa,
       });
     } else {
       setTopics({
         ai_knowledge: false,
         codebasics: false,
         trading: false,
+        dsa: false,
       });
     }
   };
@@ -157,7 +164,7 @@ export default function App() {
         break;
       }
 
-      if (completion.ai_knowledge && completion.codebasics && completion.trading) {
+      if (completion.ai_knowledge && completion.codebasics && completion.trading && completion.dsa) {
         currentStreak++;
         checkDate.setDate(checkDate.getDate() - 1);
       } else {
@@ -195,6 +202,7 @@ export default function App() {
         ai_knowledge: topic === 'ai_knowledge' ? newValue : false,
         codebasics: topic === 'codebasics' ? newValue : false,
         trading: topic === 'trading' ? newValue : false,
+        dsa: topic === 'dsa' ? newValue : false,
       });
     }
 
@@ -224,7 +232,7 @@ export default function App() {
       return 'bg-gradient-to-br from-gray-900 to-black text-gray-500 border-2 border-gray-700/70';
     }
 
-    if (completion.ai_knowledge && completion.codebasics && completion.trading) {
+    if (completion.ai_knowledge && completion.codebasics && completion.trading && completion.dsa) {
       return 'bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500 text-black border-2 border-yellow-300 neon-border-gold font-black';
     }
 
