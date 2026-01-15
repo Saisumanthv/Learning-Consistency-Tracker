@@ -233,7 +233,7 @@ export default function App() {
     }
 
     if (completion.ai_knowledge && completion.codebasics && completion.trading && completion.dsa) {
-      return 'bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500 text-black border-2 border-yellow-300 neon-border-gold font-black';
+      return 'bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500 text-black border-2 border-yellow-300 font-black';
     }
 
     return 'bg-gradient-to-br from-gray-900 to-black text-gray-500 border-2 border-gray-700/70';
@@ -269,7 +269,7 @@ export default function App() {
 
           <div className="text-center mb-6 sm:mb-8">
             <div className="mb-2 sm:mb-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-yellow-400 to-fuchsia-500 tracking-wide sm:tracking-wider neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-yellow-400 to-fuchsia-500 tracking-wide sm:tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
                 LEARNING CONSISTENCY TRACKER
               </h1>
             </div>
@@ -300,7 +300,7 @@ export default function App() {
                       onClick={() => handleDateClick(day)}
                       className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-none font-bold text-sm sm:text-base ${
                         isSelected
-                          ? 'bg-fuchsia-500 text-white border-2 border-fuchsia-300 shadow-[0_0_0_3px_rgb(234_179_8)] shadow-yellow-500 neon-border-gold'
+                          ? 'bg-fuchsia-500 text-white border-2 border-fuchsia-300 shadow-[0_0_0_3px_rgb(234_179_8)] shadow-yellow-500'
                           : getDateColor(day)
                       } flex-shrink-0 transition-all hover:scale-110 cursor-pointer uppercase ${
                         isSelected ? '' : 'shadow-lg'
@@ -316,24 +316,24 @@ export default function App() {
           </div>
 
           <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center bg-gradient-to-r from-fuchsia-950/80 to-yellow-950/80 border-2 border-fuchsia-500 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-none shadow-lg neon-border-pink relative">
+            <div className="flex items-center bg-gradient-to-r from-fuchsia-950/80 to-yellow-950/80 border-2 border-fuchsia-500 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-none shadow-lg relative">
               <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-400"></div>
               <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-fuchsia-500"></div>
               <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-fuchsia-500"></div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-400"></div>
-              <Flame className="w-6 h-6 sm:w-7 sm:h-7 text-fuchsia-400 mr-2 sm:mr-3 drop-shadow-glow" />
-              <span className="text-2xl sm:text-3xl font-bold text-yellow-400 neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>{streak}</span>
+              <Flame className="w-6 h-6 sm:w-7 sm:h-7 text-fuchsia-400 mr-2 sm:mr-3" />
+              <span className="text-2xl sm:text-3xl font-bold text-yellow-400" style={{ fontFamily: 'Orbitron, sans-serif' }}>{streak}</span>
               <span className="ml-2 sm:ml-3 text-fuchsia-300 text-sm sm:text-base font-normal uppercase tracking-wider">DAY STREAK</span>
             </div>
           </div>
 
           {showBigCongrats && (
-            <div className="bg-gradient-to-r from-fuchsia-500/30 via-yellow-500/30 to-fuchsia-500/30 border-4 border-yellow-400 text-white p-4 sm:p-6 md:p-8 rounded-none mb-6 text-center animate-pulse shadow-2xl neon-border-gold relative">
+            <div className="bg-gradient-to-r from-fuchsia-500/30 via-yellow-500/30 to-fuchsia-500/30 border-4 border-yellow-400 text-white p-4 sm:p-6 md:p-8 rounded-none mb-6 text-center animate-pulse shadow-2xl relative">
               <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-fuchsia-500"></div>
               <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-yellow-500"></div>
               <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-yellow-500"></div>
               <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-fuchsia-500"></div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 via-yellow-300 to-fuchsia-300 neon-text-gold uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 via-yellow-300 to-fuchsia-300 uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
                 Congratulations!
               </h2>
               <p className="text-base sm:text-lg md:text-xl mt-3 text-yellow-300 uppercase tracking-wide">You've made your time useful today!</p>
@@ -349,7 +349,7 @@ export default function App() {
                     onClick={() => handleTopicCheck(topic)}
                     className={`w-full flex items-center justify-between p-4 sm:p-5 md:p-6 rounded-none cursor-pointer transition-all duration-300 relative ${
                       topics[topic]
-                        ? 'bg-gradient-to-r from-fuchsia-600/90 to-yellow-600/90 border-2 border-yellow-400 hover:from-fuchsia-600 hover:to-yellow-600 shadow-lg neon-border-gold'
+                        ? 'bg-gradient-to-r from-fuchsia-600/90 to-yellow-600/90 border-2 border-yellow-400 hover:from-fuchsia-600 hover:to-yellow-600 shadow-lg'
                         : 'bg-black/70 border-2 border-gray-700 hover:bg-black/90 hover:border-yellow-500/60'
                     }`}
                   >
@@ -362,13 +362,13 @@ export default function App() {
                       </>
                     )}
                     <div className="flex items-center gap-3 sm:gap-4">
-                      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${topics[topic] ? 'text-white drop-shadow-glow' : 'text-yellow-400'}`} />
+                      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${topics[topic] ? 'text-white' : 'text-yellow-400'}`} />
                       <span className={`text-base sm:text-lg font-bold tracking-wider uppercase ${topics[topic] ? 'text-white' : 'text-yellow-300'}`} style={{ fontFamily: 'Orbitron, sans-serif' }}>
                         {topicNames[topic]}
                       </span>
                     </div>
                     {topics[topic] && (
-                      <Check className="w-6 h-6 sm:w-7 sm:h-7 text-fuchsia-300 drop-shadow-glow" />
+                      <Check className="w-6 h-6 sm:w-7 sm:h-7 text-fuchsia-300" />
                     )}
                   </button>
                   {completionMessages[topic] && (
@@ -383,7 +383,7 @@ export default function App() {
         </div>
 
         <div className="mt-8 flex items-center justify-center">
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-fuchsia-400 to-yellow-400 tracking-widest uppercase neon-text-gold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-fuchsia-400 to-yellow-400 tracking-widest uppercase" style={{ fontFamily: 'Orbitron, sans-serif' }}>
             SAI SUMANTH VADLA
           </p>
         </div>
