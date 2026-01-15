@@ -261,7 +261,7 @@ export default function App() {
               {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </h3>
             <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-3 min-w-max px-2 justify-center">
+              <div className="flex gap-3 min-w-max px-8 justify-center">
                 {Array.from({ length: getDaysInMonth() }, (_, i) => i + 1).map((day) => {
                   const isToday = day === new Date().getDate();
                   const year = currentDate.getFullYear();
