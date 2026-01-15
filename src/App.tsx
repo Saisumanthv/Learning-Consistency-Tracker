@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Check, Flame } from 'lucide-react';
+import { Check, Flame, LogOut } from 'lucide-react';
 import { supabase, DailyCompletion } from './lib/supabase';
+import { useAuth } from './lib/auth';
 import Confetti from './components/Confetti';
+import Auth from './components/Auth';
 
 interface TopicState {
   ai_knowledge: boolean;
@@ -15,6 +17,7 @@ interface CompletionMessage {
 }
 
 export default function App() {
+  const { user, loading: authLoading, signOut } = useAuth();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [topics, setTopics] = useState<TopicState>({
     ai_knowledge: false,
@@ -34,15 +37,19 @@ export default function App() {
   };
 
   useEffect(() => {
-    loadTodayData();
-    loadMonthlyData();
-    calculateStreak();
+    if (user) {
+      loadTodayData();
+      loadMonthlyData();
+      calculateStreak();
+    }
+  }, [user]);
 
+  useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
       setCurrentDate(now);
 
-      if (now.getHours() === 0 && now.getMinutes() === 0) {
+      if (now.getHours() === 0 && now.getMinutes() === 0 && user) {
         loadTodayData();
         loadMonthlyData();
         calculateStreak();
@@ -50,7 +57,7 @@ export default function App() {
     }, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (topics.ai_knowledge && topics.codebasics && topics.trading && !showBigCongrats) {
@@ -60,11 +67,17 @@ export default function App() {
   }, [topics]);
 
   const loadTodayData = async () => {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
     const today = new Date().toISOString().split('T')[0];
     const { data, error } = await supabase
       .from('daily_completions')
       .select('*')
       .eq('date', today)
+      .eq('user_id', user.id)
       .maybeSingle();
 
     if (error && error.code !== 'PGRST116') {
@@ -90,6 +103,8 @@ export default function App() {
   };
 
   const loadMonthlyData = async () => {
+    if (!user) return;
+
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const firstDay = new Date(year, month, 1).toISOString().split('T')[0];
@@ -98,6 +113,7 @@ export default function App() {
     const { data, error } = await supabase
       .from('daily_completions')
       .select('*')
+      .eq('user_id', user.id)
       .gte('date', firstDay)
       .lte('date', lastDay);
 
@@ -114,9 +130,15 @@ export default function App() {
   };
 
   const calculateStreak = async () => {
+    if (!user) {
+      setStreak(0);
+      return;
+    }
+
     const { data, error } = await supabase
       .from('daily_completions')
       .select('*')
+      .eq('user_id', user.id)
       .order('date', { ascending: false });
 
     if (error) {
@@ -157,6 +179,8 @@ export default function App() {
   };
 
   const handleTopicCheck = async (topic: keyof TopicState) => {
+    if (!user) return;
+
     const newValue = !topics[topic];
     const today = new Date().toISOString().split('T')[0];
 
@@ -174,6 +198,7 @@ export default function App() {
       .from('daily_completions')
       .select('*')
       .eq('date', today)
+      .eq('user_id', user.id)
       .maybeSingle();
 
     if (existing) {
@@ -182,7 +207,8 @@ export default function App() {
         .update({
           [topic]: newValue,
         })
-        .eq('date', today);
+        .eq('date', today)
+        .eq('user_id', user.id);
 
       if (error) {
         console.error('Error updating completion:', error);
@@ -192,6 +218,7 @@ export default function App() {
         .from('daily_completions')
         .insert({
           date: today,
+          user_id: user.id,
           ai_knowledge: topic === 'ai_knowledge' ? newValue : false,
           codebasics: topic === 'codebasics' ? newValue : false,
           trading: topic === 'trading' ? newValue : false,
@@ -243,12 +270,16 @@ export default function App() {
     });
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-purple-950 flex items-center justify-center">
         <div className="text-xl text-amber-300">Loading...</div>
       </div>
     );
+  }
+
+  if (!user) {
+    return <Auth />;
   }
 
   return (
@@ -257,7 +288,14 @@ export default function App() {
 
       <div className="max-w-4xl mx-auto">
         <div className="bg-gradient-to-br from-purple-900/50 via-purple-800/40 to-purple-900/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-amber-400/20 p-8 mb-6">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 relative">
+            <button
+              onClick={signOut}
+              className="absolute right-0 top-0 flex items-center gap-2 px-4 py-2 bg-purple-800/50 hover:bg-purple-700/50 border border-purple-600/50 hover:border-amber-500/50 rounded-lg text-amber-200 transition-all duration-300"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="text-sm">Sign Out</span>
+            </button>
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 mb-3 tracking-wide">
               Daily Consistency Tracker
             </h1>

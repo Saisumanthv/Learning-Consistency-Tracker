@@ -12,6 +12,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export interface DailyCompletion {
   id: string;
   date: string;
+  user_id: string;
   ai_knowledge: boolean;
   codebasics: boolean;
   trading: boolean;
