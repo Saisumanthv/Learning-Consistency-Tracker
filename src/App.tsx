@@ -17,6 +17,7 @@ interface DailyCompletion {
 
 export default function App() {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [topics, setTopics] = useState<TopicState>({
     ai_knowledge: false,
     codebasics: false,
@@ -46,10 +47,14 @@ export default function App() {
   };
 
   useEffect(() => {
-    loadTodayData();
+    loadDateData(selectedDate);
     loadMonthlyData();
     calculateStreak();
   }, []);
+
+  useEffect(() => {
+    loadDateData(selectedDate);
+  }, [selectedDate]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +62,8 @@ export default function App() {
       setCurrentDate(now);
 
       if (now.getHours() === 0 && now.getMinutes() === 0) {
-        loadTodayData();
+        const today = new Date().toISOString().split('T')[0];
+        setSelectedDate(today);
         loadMonthlyData();
         calculateStreak();
       }
@@ -83,16 +89,15 @@ export default function App() {
     }
   }, [monthlyCompletions]);
 
-  const loadTodayData = () => {
-    const today = new Date().toISOString().split('T')[0];
+  const loadDateData = (dateString: string) => {
     const completions = getAllCompletions();
-    const todayData = completions.find((c) => c.date === today);
+    const dateData = completions.find((c) => c.date === dateString);
 
-    if (todayData) {
+    if (dateData) {
       setTopics({
-        ai_knowledge: todayData.ai_knowledge,
-        codebasics: todayData.codebasics,
-        trading: todayData.trading,
+        ai_knowledge: dateData.ai_knowledge,
+        codebasics: dateData.codebasics,
+        trading: dateData.trading,
       });
     } else {
       setTopics({
@@ -159,7 +164,6 @@ export default function App() {
 
   const handleTopicCheck = (topic: keyof TopicState) => {
     const newValue = !topics[topic];
-    const today = new Date().toISOString().split('T')[0];
 
     const updatedTopics = { ...topics, [topic]: newValue };
     setTopics(updatedTopics);
@@ -172,7 +176,7 @@ export default function App() {
     }
 
     const completions = getAllCompletions();
-    const existingIndex = completions.findIndex((c) => c.date === today);
+    const existingIndex = completions.findIndex((c) => c.date === selectedDate);
 
     if (existingIndex >= 0) {
       completions[existingIndex] = {
@@ -181,7 +185,7 @@ export default function App() {
       };
     } else {
       completions.push({
-        date: today,
+        date: selectedDate,
         ai_knowledge: topic === 'ai_knowledge' ? newValue : false,
         codebasics: topic === 'codebasics' ? newValue : false,
         trading: topic === 'trading' ? newValue : false,
@@ -230,6 +234,13 @@ export default function App() {
     });
   };
 
+  const handleDateClick = (day: number) => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    setSelectedDate(dateString);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-8 px-4">
       {showBigCongrats && <Confetti />}
@@ -241,7 +252,7 @@ export default function App() {
               Daily Consistency Tracker
             </h1>
             <p className="text-lg text-blue-300/90 font-light tracking-wide">
-              {formatDate(currentDate)}
+              {formatDate(new Date(selectedDate + 'T00:00:00'))}
             </p>
           </div>
 
@@ -253,13 +264,21 @@ export default function App() {
               <div className="flex gap-3 min-w-max px-2 justify-center">
                 {Array.from({ length: getDaysInMonth() }, (_, i) => i + 1).map((day) => {
                   const isToday = day === new Date().getDate();
+                  const year = currentDate.getFullYear();
+                  const month = currentDate.getMonth();
+                  const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                  const isSelected = dateString === selectedDate;
+
                   return (
                     <div
                       key={day}
                       ref={isToday ? currentDateRef : null}
+                      onClick={() => handleDateClick(day)}
                       className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
                         day
-                      )} flex-shrink-0 transition-all hover:scale-110 shadow-lg`}
+                      )} flex-shrink-0 transition-all hover:scale-110 shadow-lg cursor-pointer ${
+                        isSelected ? 'ring-4 ring-cyan-400 ring-offset-2 ring-offset-slate-900' : ''
+                      }`}
                     >
                       {day}
                     </div>
