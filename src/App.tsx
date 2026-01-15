@@ -41,8 +41,10 @@ export default function App() {
       loadTodayData();
       loadMonthlyData();
       calculateStreak();
+    } else if (!authLoading) {
+      setLoading(false);
     }
-  }, [user]);
+  }, [user, authLoading]);
 
   useEffect(() => {
     const interval = setInterval(() => {
