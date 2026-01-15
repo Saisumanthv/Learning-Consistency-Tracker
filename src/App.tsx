@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Check, Flame } from 'lucide-react';
+import { Check, Flame, Brain, GitBranch, FileCode } from 'lucide-react';
 import Confetti from './components/Confetti';
 
 interface TopicState {
@@ -30,9 +30,15 @@ export default function App() {
   const currentDateRef = useRef<HTMLDivElement>(null);
 
   const topicNames = {
-    ai_knowledge: 'AI Knowledge',
-    codebasics: 'Codebasics',
-    trading: 'Trading',
+    ai_knowledge: 'Deep Learning & Neural Networks',
+    codebasics: 'MLOps & Infrastructure',
+    trading: 'Research Papers & Experiments',
+  };
+
+  const topicIcons = {
+    ai_knowledge: Brain,
+    codebasics: GitBranch,
+    trading: FileCode,
   };
 
   const STORAGE_KEY = 'daily-completions';
@@ -210,19 +216,19 @@ export default function App() {
     const today = new Date().toISOString().split('T')[0];
 
     if (dateString > today) {
-      return 'bg-slate-800/40 border-2 border-slate-600/40 text-slate-400/60';
+      return 'bg-gray-900/40 border-2 border-gray-700/40 text-gray-500/60';
     }
 
     const completion = monthlyCompletions[dateString];
     if (!completion) {
-      return 'bg-gradient-to-br from-red-600 to-red-700 text-white border-2 border-red-500/50';
+      return 'bg-gradient-to-br from-gray-700 to-gray-800 text-gray-400 border-2 border-gray-600/50';
     }
 
     if (completion.ai_knowledge && completion.codebasics && completion.trading) {
-      return 'bg-gradient-to-br from-emerald-600 to-green-600 text-white border-2 border-emerald-400/50';
+      return 'bg-gradient-to-br from-emerald-600 to-teal-600 text-white border-2 border-emerald-400/70 shadow-lg shadow-emerald-500/30';
     }
 
-    return 'bg-gradient-to-br from-red-600 to-red-700 text-white border-2 border-red-500/50';
+    return 'bg-gradient-to-br from-gray-700 to-gray-800 text-gray-400 border-2 border-gray-600/50';
   };
 
   const formatDate = (date: Date) => {
@@ -242,22 +248,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-emerald-950/20 to-gray-950 py-8 px-4">
       {showBigCongrats && <Confetti />}
 
       <div className="max-w-4xl mx-auto">
-        <div className="bg-gradient-to-br from-slate-900/50 via-slate-800/40 to-slate-900/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-blue-400/20 p-8 mb-6">
+        <div className="bg-gradient-to-br from-gray-900/90 via-emerald-950/30 to-gray-900/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-emerald-500/30 p-8 mb-6">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-400 to-blue-300 mb-3 tracking-wide">
-              Daily Consistency Tracker
-            </h1>
-            <p className="text-lg text-blue-300/90 font-light tracking-wide">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Brain className="w-10 h-10 text-emerald-400" />
+              <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 tracking-tight">
+                AI Engineering Sprint
+              </h1>
+              <Brain className="w-10 h-10 text-emerald-400" />
+            </div>
+            <p className="text-base text-emerald-300/80 font-mono tracking-wider">
               {formatDate(new Date(selectedDate + 'T00:00:00'))}
             </p>
           </div>
 
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-blue-200/90 mb-5 text-center tracking-wide">
+            <h3 className="text-xl font-semibold text-emerald-300/90 mb-5 text-center tracking-wide font-mono">
               {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </h3>
             <div className="overflow-x-auto scrollbar-hide">
@@ -276,9 +286,9 @@ export default function App() {
                       onClick={() => handleDateClick(day)}
                       className={`w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-base ${getDateColor(
                         day
-                      )} flex-shrink-0 transition-all hover:scale-105 cursor-pointer ${
+                      )} flex-shrink-0 transition-all hover:scale-105 cursor-pointer font-mono ${
                         isSelected
-                          ? 'shadow-[0_0_0_2px_rgb(34_211_238_/_1)] shadow-cyan-400'
+                          ? 'shadow-[0_0_0_2px_rgb(16_185_129)] shadow-emerald-500'
                           : 'shadow-lg'
                       }`}
                     >
@@ -291,47 +301,53 @@ export default function App() {
           </div>
 
           <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center bg-gradient-to-r from-orange-900/40 to-orange-800/40 border border-orange-500/30 px-6 py-3 rounded-full shadow-lg">
-              <Flame className="w-6 h-6 text-orange-400 mr-2 drop-shadow-glow" />
-              <span className="text-2xl font-bold text-orange-300">{streak}</span>
-              <span className="ml-2 text-orange-200/80 text-base font-normal">day streak</span>
+            <div className="flex items-center bg-gradient-to-r from-emerald-900/50 to-teal-900/50 border border-emerald-500/50 px-6 py-3 rounded-full shadow-lg shadow-emerald-500/20">
+              <Flame className="w-6 h-6 text-emerald-400 mr-2 drop-shadow-glow" />
+              <span className="text-2xl font-bold text-emerald-300 font-mono">{streak}</span>
+              <span className="ml-2 text-emerald-200/80 text-base font-normal">day sprint streak</span>
             </div>
           </div>
 
           {showBigCongrats && (
-            <div className="bg-gradient-to-r from-emerald-500/20 via-green-500/20 to-emerald-500/20 border-2 border-emerald-400 text-emerald-100 p-6 rounded-2xl mb-6 text-center animate-pulse shadow-2xl">
-              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-green-300">
-                Congratulations!
+            <div className="bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20 border-2 border-emerald-400 text-emerald-100 p-6 rounded-xl mb-6 text-center animate-pulse shadow-2xl shadow-emerald-500/20">
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-300">
+                Sprint Complete!
               </h2>
-              <p className="text-xl mt-2 text-emerald-200/90">You've made your time useful today!</p>
+              <p className="text-xl mt-2 text-emerald-200/90 font-mono">All modules completed for today</p>
             </div>
           )}
 
           <div className="space-y-4 mb-8">
-            {(Object.keys(topicNames) as Array<keyof TopicState>).map((topic) => (
-              <div key={topic}>
-                <button
-                  onClick={() => handleTopicCheck(topic)}
-                  className={`w-full flex items-center justify-between p-6 rounded-xl cursor-pointer transition-all duration-300 shadow-lg ${
-                    topics[topic]
-                      ? 'bg-gradient-to-r from-emerald-600 to-green-600 border-2 border-emerald-400 hover:from-emerald-700 hover:to-green-700'
-                      : 'bg-slate-800/30 border-2 border-slate-700/30 hover:bg-slate-700/30 hover:border-blue-500/40'
-                  }`}
-                >
-                  <span className="text-lg font-medium text-blue-100 tracking-wide">
-                    {topicNames[topic]}
-                  </span>
-                  {topics[topic] && (
-                    <Check className="w-6 h-6 text-white drop-shadow-md" />
+            {(Object.keys(topicNames) as Array<keyof TopicState>).map((topic) => {
+              const Icon = topicIcons[topic];
+              return (
+                <div key={topic}>
+                  <button
+                    onClick={() => handleTopicCheck(topic)}
+                    className={`w-full flex items-center justify-between p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                      topics[topic]
+                        ? 'bg-gradient-to-r from-emerald-600/90 to-teal-600/90 border-2 border-emerald-400/70 hover:from-emerald-600 hover:to-teal-600 shadow-lg shadow-emerald-500/20'
+                        : 'bg-gray-800/40 border-2 border-gray-700/40 hover:bg-gray-800/60 hover:border-emerald-500/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon className={`w-6 h-6 ${topics[topic] ? 'text-white' : 'text-emerald-400'}`} />
+                      <span className={`text-lg font-medium tracking-wide ${topics[topic] ? 'text-white' : 'text-emerald-200'}`}>
+                        {topicNames[topic]}
+                      </span>
+                    </div>
+                    {topics[topic] && (
+                      <Check className="w-6 h-6 text-white drop-shadow-md" />
+                    )}
+                  </button>
+                  {completionMessages[topic] && (
+                    <div className="mt-2 ml-4 text-emerald-300 font-normal text-base animate-pulse">
+                      Module completed: {topicNames[topic]}
+                    </div>
                   )}
-                </button>
-                {completionMessages[topic] && (
-                  <div className="mt-2 ml-4 text-emerald-300 font-normal text-base animate-pulse">
-                    Congrats on completing {topicNames[topic]} today!
-                  </div>
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
